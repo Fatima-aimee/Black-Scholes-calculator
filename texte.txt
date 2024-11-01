@@ -1,0 +1,92 @@
+
+# Calculateur de prime d'option Black Scholes avec visualisation
+
+## Description du projet
+Ce projet est un calculateur de prix d'option Black-Scholes qui permet aux utilisateurs de calculer les prix théoriques des options d'achat et de vente européennes. Il s'agit d'une application interactive hébergée sur le web, construite avec Streamlit, qui comporte une interface permettant de saisir des paramètres tels que le prix au comptant, le prix d'exercice, le délai d'échéance, la volatilité et le taux sans risque. L'application visualise également les grecques des options et fournit une analyse de sensibilité pour une prise de décision éclairée dans le commerce des options.
+
+**Lien vers le projet** : https://black-scholes-calculator.streamlit.app/
+
+## Modèle Black-Scholes
+
+Le **modèle de Black-Scholes**, souvent appelé **modèle de Black-Scholes-Merton (BSM)**, est un concept fondamental de la finance moderne. Il fournit un cadre mathématique pour estimer la valeur théorique des options en tenant compte de divers facteurs de risque et du passage du temps.
+
+L'équation de Black-Scholes repose sur cinq variables clés :
+
+- **Volatilité de l'actif sous-jacent** : Elle mesure le degré de variation du prix de l'actif dans le temps.
+- Le prix de l'actif sous-jacent** : Le prix actuel du marché de l'actif pour lequel l'option est vendue.
+- Prix d'exercice de l'option** : Le prix prédéterminé auquel le détenteur de l'option peut acheter (call) ou vendre (put) l'actif sous-jacent.
+- Durée jusqu'à l'échéance** : Le temps restant jusqu'à l'expiration du contrat d'option, généralement exprimé en années.
+- Taux d'intérêt sans risque** : Le taux de rendement théorique d'un investissement sans risque, souvent approximé par les rendements des obligations d'État.
+
+Ce modèle est largement utilisé sur les marchés financiers pour fixer le prix des options et évaluer le risque, ce qui en fait un outil essentiel pour les traders et les investisseurs.
+
+## Hypothèses du modèle
+
+Le modèle Black-Scholes repose sur plusieurs hypothèses :
+
+- Aucun dividende n'est versé pendant la durée de vie de l'option.
+- Les marchés présentent un caractère aléatoire (les mouvements du marché ne peuvent être prédits avec précision).
+- Il n'y a pas de coûts de transaction associés à l'achat de l'option.
+- Le taux sans risque et la volatilité de l'actif sous-jacent restent connus et constants pendant toute la durée de vie de l'option.
+- Les rendements de l'actif sous-jacent sont distribués de manière log-normale.
+- L'option est européenne, ce qui signifie qu'elle ne peut être exercée qu'à l'expiration.
+
+## Formules
+Les prix des options d'achat et de vente sont calculés à l'aide des formules suivantes :
+
+**Option d'achat**
+```math
+C = S_0 \cdot N(d_1) - K \cdot e^{-rT} \cdot N(d_2)
+```
+**Put Option**
+```math
+P = K \cdot e^{-rT} \cdot N(-d_2) - S_0 \cdot N(-d_1)
+
+```
+**d1 et d2**
+```math
+d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma \sqrt{T}}
+```
+```math
+d_2 = d_1 - \sigma \sqrt{T}
+```
+
+## Option Greeks
+Les grecques mesurent la sensibilité du prix de l'option aux variations des paramètres sous-jacents, les autres paramètres restant constants. Il s'agit des dérivées partielles du prix de l'option par rapport aux paramètres.
+
+#### Les valeurs grecques sont les suivantes
+- **Delta (Δ)** : Sensibilité aux variations du prix de l'actif sous-jacent.
+- **Gamma (Γ)** : Sensibilité aux variations du Delta.
+- Thêta (Θ)** : Sensibilité au passage du temps.
+- Vega (𝜈)** : Sensibilité aux variations de la volatilité.
+- Rho (𝜌)** : Sensibilité aux variations du taux d'intérêt sans risque.
+
+#### Formules grecques :
+``math
+Δ_{call} = N(d_1) 
+```
+``math
+Δ_{put} = N(d_1) - 1 
+```
+```math
+Γ = \frac{N'(d_1)}{S_0 \cdot \sigma \sqrt{T}} 
+```
+```math
+Θ_{call} = -\frac{S_0 \cdot N'(d_1) \cdot \sigma}{2\sqrt{T}} - rK e^{-rT} N(d_2) 
+```
+```math
+Θ_{put} = -\frac{S_0 \cdot N'(d_1) \cdot \sigma}{2\sqrt{T}} + rK e^{-rT} N(-d_2) 
+```
+```math
+ν = S_0 \cdot N'(d_1) \cdot \sqrt{T} 
+```
+```math
+ρ_{call} = K \cdot T e^{-rT} N(d_2) 
+```
+```math
+ρ_{put} = -K \cdot T e^{-rT} N(-d_2) 
+```
+
+### Connectez-vous avec moi
+
+[ ![LinkedIn]()]()
